@@ -48,7 +48,7 @@ assertTrue(
     );
 ```
 
-- Remember: the alphabet created is **inmmutable**
+- Remember: the alphabet created is **immutable**
 ```java
 assertNotNull(
     assertThrows(
