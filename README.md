@@ -21,7 +21,7 @@ assertEquals(1914, ConvertToArabic.fromRoman("MCMXIV"));
 
 - Create your own alphabet and convert to arabic
 ```java
-Map<Character, Integer> alphabet =
+Alphabet alphabet =
     Alphabet.builder()
         .One('F')
         .Five('A')
