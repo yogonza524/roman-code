@@ -14,7 +14,7 @@ assertTrue(
         .contains("Sintaxis violation"));
 ```
 
-- Convert from roman to arabic test
+- Convert from **roman** to **arabic**
 ```java
 assertEquals(1914, ConvertToArabic.fromRoman("MCMXIV"));
 ```
@@ -65,4 +65,4 @@ assertNotNull(
 Check [Test class for more examples](./src/test/java/com/roman/code/ConvertToArabicTest.java)
  
 ## Issues
-please contact to me to [my email](mailto:yogonza524@gmail.com)
+Please contact to me to [my email](mailto:yogonza524@gmail.com)
