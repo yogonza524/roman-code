@@ -3,8 +3,10 @@ package com.roman.code.domain;
 import com.roman.code.exception.IncompleteAlphabetException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Alphabet {
   private Map<Character, Integer> alphabet;
@@ -71,8 +73,15 @@ public class Alphabet {
         throw new IncompleteAlphabetException(
             "Alphabet must have 7 defined pair key-values. Defined: "
                 + definedDigits
-                + "/7 digits");
+                + "/7 digits. Please set keys " + undefinedDigits());
       return new Alphabet(Collections.unmodifiableMap(alphabet));
+    }
+
+    private String undefinedDigits() {
+      Set<Integer> valuesCopy = new HashSet<>();
+      valuesCopy.addAll(values);
+      valuesCopy.removeAll(alphabet.values());
+      return valuesCopy.stream().map(digit -> "for " + digit).collect(Collectors.joining(", "));
     }
   }
 }
