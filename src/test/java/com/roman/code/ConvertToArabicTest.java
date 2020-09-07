@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.roman.code.domain.Alphabet;
 import com.roman.code.exception.ConversionException;
+import com.roman.code.exception.IncompleteAlphabetException;
 import org.junit.jupiter.api.Test;
+
+import java.lang.instrument.UnmodifiableClassException;
 
 class ConvertToArabicTest {
 
@@ -72,8 +75,26 @@ class ConvertToArabicTest {
     Alphabet.AlphabetBuilder alphabet =
         Alphabet.builder().One('G').Five('O').Ten('N').Fifty('Z').OneHundred('A');
     assertTrue(
-        assertThrows(RuntimeException.class, () -> alphabet.build(), "")
+        assertThrows(IncompleteAlphabetException.class, () -> alphabet.build(), "")
             .getMessage()
             .contains("Alphabet must have 7 defined pair key-values"));
+  }
+
+  @Test
+  public void shouldFailIfAlphabetWantsToBeModified() {
+    Alphabet alphabet =
+            Alphabet.builder()
+                    .One('G')
+                    .Five('O')
+                    .Ten('N')
+                    .Fifty('Z')
+                    .OneHundred('A')
+                    .FiveHundred('L')
+                    .Thousand('X')
+                    .build();
+
+    assertNotNull(
+            assertThrows(UnsupportedOperationException.class, () -> alphabet.getAlphabet().put('G',19), "")
+    );
   }
 }

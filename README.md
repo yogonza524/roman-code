@@ -35,14 +35,14 @@ Alphabet alphabet =
 assertEquals(1914, ConvertToArabic.fromAlphabet("ONOCFA", alphabet));
 ```
 
-- If your alphabet is incomplete then you will receive a RuntimeException
+- If your alphabet is incomplete then you will receive an IncompleteAlphabetException
 ```java
 Alphabet.AlphabetBuilder alphabet =
     Alphabet.builder().One('G').Five('O').Ten('N').Fifty('Z').OneHundred('A');
 
 assertTrue(
     assertThrows(
-        RuntimeException.class, () -> alphabet.build(), "")
+        IncompleteAlphabetException.class, () -> alphabet.build(), "")
             .getMessage()
             .contains("Alphabet must have 7 defined pair key-values")
     );

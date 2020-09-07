@@ -1,6 +1,7 @@
 package com.roman.code;
 
 import com.roman.code.domain.Alphabet;
+import com.roman.code.domain.LastNumber;
 import com.roman.code.exception.ConversionException;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,7 @@
 package com.roman.code.domain;
 
+import com.roman.code.exception.IncompleteAlphabetException;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +15,7 @@ public class Alphabet {
   }
 
   public Map<Character, Integer> getAlphabet() {
-    return Collections.unmodifiableMap(alphabet);
+    return this.alphabet;
   }
 
   public static AlphabetBuilder builder() {
@@ -62,15 +64,15 @@ public class Alphabet {
       return this;
     }
 
-    public Alphabet build() {
+    public Alphabet build() throws IncompleteAlphabetException {
       Integer[] values = new Integer[] {1, 5, 10, 50, 100, 500, 1000};
       Set<Integer> v = Set.of(values);
       long definedDigits =
           alphabet.entrySet().stream().filter(digit -> v.contains(digit.getValue())).count();
       if (definedDigits != 7)
-        throw new RuntimeException(
+        throw new IncompleteAlphabetException(
             "Alphabet must have 7 defined pair key-values. Defined: " + definedDigits + "/7 digits");
-      Alphabet result = new Alphabet(alphabet);
+      Alphabet result = new Alphabet(Collections.unmodifiableMap(alphabet));
       return result;
     }
   }
