@@ -1,3 +1,4 @@
+![Test all](https://github.com/yogonza524/roman-code/workflows/test-all/badge.svg)
 # Roman code
 Translate any roman number to arabic or create your own alphabet to translate that symbols to arabic 
 
