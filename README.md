@@ -37,7 +37,7 @@ assertEquals(1914, ConvertToArabic.fromAlphabet("ONOCFA", alphabet));
 
 - If your alphabet is incomplete then you will receive an IncompleteAlphabetException
 ```java
-Alphabet.AlphabetBuilder alphabet =
+Alphabet.Builder alphabet =
     Alphabet.builder().One('G').Five('O').Ten('N').Fifty('Z').OneHundred('A');
 
 assertTrue(

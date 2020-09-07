@@ -18,48 +18,48 @@ public class Alphabet {
     return this.alphabet;
   }
 
-  public static AlphabetBuilder builder() {
-    return new AlphabetBuilder();
+  public static Builder builder() {
+    return new Builder();
   }
 
-  public static final class AlphabetBuilder {
+  public static final class Builder {
     private Map<Character, Integer> alphabet;
 
-    private AlphabetBuilder() {
+    private Builder() {
       this.alphabet = new HashMap<>();
     }
 
-    public AlphabetBuilder One(Character key) {
+    public Builder One(Character key) {
       this.alphabet.put(key, 1);
       return this;
     }
 
-    public AlphabetBuilder Five(Character key) {
+    public Builder Five(Character key) {
       this.alphabet.put(key, 5);
       return this;
     }
 
-    public AlphabetBuilder Ten(Character key) {
+    public Builder Ten(Character key) {
       this.alphabet.put(key, 10);
       return this;
     }
 
-    public AlphabetBuilder Fifty(Character key) {
+    public Builder Fifty(Character key) {
       this.alphabet.put(key, 50);
       return this;
     }
 
-    public AlphabetBuilder OneHundred(Character key) {
+    public Builder OneHundred(Character key) {
       this.alphabet.put(key, 100);
       return this;
     }
 
-    public AlphabetBuilder FiveHundred(Character key) {
+    public Builder FiveHundred(Character key) {
       this.alphabet.put(key, 500);
       return this;
     }
 
-    public AlphabetBuilder Thousand(Character key) {
+    public Builder Thousand(Character key) {
       this.alphabet.put(key, 1000);
       return this;
     }

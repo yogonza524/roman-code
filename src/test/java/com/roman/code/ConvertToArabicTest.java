@@ -7,8 +7,6 @@ import com.roman.code.exception.ConversionException;
 import com.roman.code.exception.IncompleteAlphabetException;
 import org.junit.jupiter.api.Test;
 
-import java.lang.instrument.UnmodifiableClassException;
-
 class ConvertToArabicTest {
 
   @Test
@@ -72,7 +70,7 @@ class ConvertToArabicTest {
 
   @Test
   public void shouldFailIfAlphabetIsNotCompletelyDefined() {
-    Alphabet.AlphabetBuilder alphabet =
+    Alphabet.Builder alphabet =
         Alphabet.builder().One('G').Five('O').Ten('N').Fifty('Z').OneHundred('A');
     assertTrue(
         assertThrows(IncompleteAlphabetException.class, () -> alphabet.build(), "")
