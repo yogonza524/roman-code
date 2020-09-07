@@ -23,6 +23,7 @@ public class Alphabet {
 
   public static final class Builder {
     private Map<Character, Integer> alphabet;
+    private Set<Integer> values = Set.of(new Integer[] {1, 5, 10, 50, 100, 500, 1000});
 
     private Builder() {
       this.alphabet = new HashMap<>();
@@ -64,17 +65,14 @@ public class Alphabet {
     }
 
     public Alphabet build() throws IncompleteAlphabetException {
-      Integer[] values = new Integer[] {1, 5, 10, 50, 100, 500, 1000};
-      Set<Integer> v = Set.of(values);
       long definedDigits =
-          alphabet.entrySet().stream().filter(digit -> v.contains(digit.getValue())).count();
+          alphabet.entrySet().stream().filter(digit -> values.contains(digit.getValue())).count();
       if (definedDigits != 7)
         throw new IncompleteAlphabetException(
             "Alphabet must have 7 defined pair key-values. Defined: "
                 + definedDigits
                 + "/7 digits");
-      Alphabet result = new Alphabet(Collections.unmodifiableMap(alphabet));
-      return result;
+      return new Alphabet(Collections.unmodifiableMap(alphabet));
     }
   }
 }
