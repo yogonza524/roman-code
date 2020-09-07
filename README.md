@@ -3,7 +3,7 @@ Translate any roman number to arabic or create your own alphabet to translate th
 
 ## Features
 - Translator roman-2-arabic
-- Translator custom-2-arabic
+- Translator alphabet-2-arabic
 
 ## Samples
 - Validation test for romanic translation
