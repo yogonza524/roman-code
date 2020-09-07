@@ -81,18 +81,18 @@ class ConvertToArabicTest {
   @Test
   public void shouldFailIfAlphabetWantsToBeModified() {
     Alphabet alphabet =
-            Alphabet.builder()
-                    .One('G')
-                    .Five('O')
-                    .Ten('N')
-                    .Fifty('Z')
-                    .OneHundred('A')
-                    .FiveHundred('L')
-                    .Thousand('X')
-                    .build();
+        Alphabet.builder()
+            .One('G')
+            .Five('O')
+            .Ten('N')
+            .Fifty('Z')
+            .OneHundred('A')
+            .FiveHundred('L')
+            .Thousand('X')
+            .build();
 
     assertNotNull(
-            assertThrows(UnsupportedOperationException.class, () -> alphabet.getAlphabet().put('G',19), "")
-    );
+        assertThrows(
+            UnsupportedOperationException.class, () -> alphabet.getAlphabet().put('G', 19), ""));
   }
 }

@@ -5,7 +5,7 @@ Translate any roman number to arabic or create your own alphabet to translate th
 - Translator roman-2-arabic
 - Translator custom-2-arabic
 
-## Sample
+## Samples
 - Validation test for romanic translation
 ```java
 assertTrue(
@@ -47,6 +47,14 @@ assertTrue(
             .contains("Alphabet must have 7 defined pair key-values")
     );
 ```
+
+- Remember: the alphabet created is **inmmutable**
+```java
+assertNotNull(
+    assertThrows(
+        UnsupportedOperationException.class, () -> alphabet.getAlphabet().put('G', 19), ""));
+```
+
 
 ## Test all
 ```java

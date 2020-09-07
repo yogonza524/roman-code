@@ -1,7 +1,6 @@
 package com.roman.code.domain;
 
 import com.roman.code.exception.IncompleteAlphabetException;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +70,9 @@ public class Alphabet {
           alphabet.entrySet().stream().filter(digit -> v.contains(digit.getValue())).count();
       if (definedDigits != 7)
         throw new IncompleteAlphabetException(
-            "Alphabet must have 7 defined pair key-values. Defined: " + definedDigits + "/7 digits");
+            "Alphabet must have 7 defined pair key-values. Defined: "
+                + definedDigits
+                + "/7 digits");
       Alphabet result = new Alphabet(Collections.unmodifiableMap(alphabet));
       return result;
     }
