@@ -6,7 +6,7 @@ Translate any roman number to arabic or create your own alphabet to translate th
 - Translator alphabet-2-arabic
 
 ## Samples
-- Validation test for romanic translation
+- Validation test for roman translation
 ```java
 assertTrue(
     assertThrows(ConversionException.class, () -> ConvertToArabic.fromRoman("VX"), "")
