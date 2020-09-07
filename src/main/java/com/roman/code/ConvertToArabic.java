@@ -1,5 +1,6 @@
 package com.roman.code;
 
+import com.roman.code.domain.Alphabet;
 import com.roman.code.exception.ConversionException;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,9 +26,9 @@ public class ConvertToArabic {
     return transform.apply(romanNumber, numbers);
   }
 
-  public static Integer fromAlphabet(String number, Map<Character, Integer> alphabet) {
-    validate(number, alphabet);
-    return transform.apply(number, alphabet);
+  public static Integer fromAlphabet(String number, Alphabet alphabet) {
+    validate(number, alphabet.getAlphabet());
+    return transform.apply(number, alphabet.getAlphabet());
   }
 
   private static BiFunction<String, Map<Character, Integer>, Integer> transform =
