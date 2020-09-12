@@ -8,6 +8,10 @@ Translate any roman number to arabic or create your own alphabet to translate th
 - Translator arabic-2-roman (New) :heavy_check_mark:
 - Translator arabic-2-alphabet (New) :heavy_check_mark:
 
+## Stack
+- Openjdk 11.0.8 2020-07-14
+- Gradle 6.5
+
 ## Samples
 - Validation test for roman translation
 ```java
@@ -57,7 +61,6 @@ assertNotNull(
     assertThrows(
         UnsupportedOperationException.class, () -> alphabet.getAlphabet().put('G', 19), ""));
 ```
-
 
 ## Test all
 ```java
