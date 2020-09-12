@@ -5,6 +5,8 @@ Translate any roman number to arabic or create your own alphabet to translate th
 ## Features
 - Translator roman-2-arabic
 - Translator alphabet-2-arabic
+- Translator arabic-2-roman (New) :heavy_check_mark:
+- Translator arabic-2-alphabet (New) :heavy_check_mark:
 
 ## Samples
 - Validation test for roman translation
