@@ -49,13 +49,13 @@ class ConvertToArabicTest {
   public void shouldConvertAllNumbersOfAlphabet() {
     Alphabet alphabet =
         Alphabet.builder()
-            .One('F')
-            .Five('A')
-            .Ten('C')
-            .Fifty('U')
-            .OneHundred('N')
-            .FiveHundred('D')
-            .Thousand('O')
+            .One("F")
+            .Five("A")
+            .Ten("C")
+            .Fifty("U")
+            .OneHundred("N")
+            .FiveHundred("D")
+            .Thousand("O")
             .build();
 
     assertEquals(1914, ConvertToArabic.fromAlphabet("ONOCFA", alphabet));
@@ -71,7 +71,7 @@ class ConvertToArabicTest {
   @Test
   public void shouldFailIfAlphabetIsNotCompletelyDefined() {
     Alphabet.Builder alphabet =
-        Alphabet.builder().One('G').Five('O').Ten('N').Fifty('Z').OneHundred('A');
+        Alphabet.builder().One("G").Five("O").Ten("N").Fifty("Z").OneHundred("A");
     assertTrue(
         assertThrows(IncompleteAlphabetException.class, () -> alphabet.build(), "")
             .getMessage()
@@ -82,17 +82,17 @@ class ConvertToArabicTest {
   public void shouldFailIfAlphabetWantsToBeModified() {
     Alphabet alphabet =
         Alphabet.builder()
-            .One('G')
-            .Five('O')
-            .Ten('N')
-            .Fifty('Z')
-            .OneHundred('A')
-            .FiveHundred('L')
-            .Thousand('X')
+            .One("G")
+            .Five("O")
+            .Ten("N")
+            .Fifty("Z")
+            .OneHundred("A")
+            .FiveHundred("L")
+            .Thousand("0")
             .build();
 
     assertNotNull(
         assertThrows(
-            UnsupportedOperationException.class, () -> alphabet.getAlphabet().put('G', 19), ""));
+            UnsupportedOperationException.class, () -> alphabet.getAlphabet().put("G", 19), ""));
   }
 }

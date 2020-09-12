@@ -3,24 +3,14 @@ package com.roman.code;
 import com.roman.code.domain.Alphabet;
 import com.roman.code.domain.LastNumber;
 import com.roman.code.exception.ConversionException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 
 public class ConvertToArabic {
-  private static Map<Character, Integer> numbers = new HashMap<>();
-
-  static {
-    numbers.put('I', 1);
-    numbers.put('V', 5);
-    numbers.put('X', 10);
-    numbers.put('L', 50);
-    numbers.put('C', 100);
-    numbers.put('D', 500);
-    numbers.put('M', 1000);
-  }
+  private static Map<String, Integer> numbers = Alphabet.roman().getAlphabet();
 
   public static Integer fromRoman(String romanNumber) throws ConversionException {
     validate(romanNumber, numbers);
@@ -32,15 +22,15 @@ public class ConvertToArabic {
     return transform.apply(number, alphabet.getAlphabet());
   }
 
-  private static BiFunction<String, Map<Character, Integer>, Integer> transform =
+  private static BiFunction<String, Map<String, Integer>, Integer> transform =
       (input, map) ->
           validate(input, map)
               ? input.length() == 1
-                  ? map.get(input.charAt(0))
-                  : sum(input.charAt(0), input.substring(1), 0, LastNumber.NO, map)
+                  ? map.get(input.charAt(0) + "")
+                  : sum(input.charAt(0) + "", input.substring(1), 0, LastNumber.NO, map)
               : -1;
 
-  private static BiFunction<Character, Map<Character, Integer>, Integer> convert =
+  private static BiFunction<String, Map<String, Integer>, Integer> convert =
       (digit, map) -> map.get(digit);
 
   private static Function<String, Integer> calcOffset = (string) -> string.length() > 1 ? 1 : 0;
@@ -48,12 +38,12 @@ public class ConvertToArabic {
       (offset) -> offset > 0 ? LastNumber.YES : LastNumber.NO;
 
   private static int sum(
-      char head, String tail, int acum, LastNumber lastNumber, Map<Character, Integer> map) {
+      String head, String tail, int acum, LastNumber lastNumber, Map<String, Integer> map) {
     if (StringUtils.isBlank(tail) && lastNumber.equals(LastNumber.YES))
       return acum + convert.apply(head, map);
     if (StringUtils.isBlank(tail)) return acum;
 
-    char nextDigit = tail.charAt(0);
+    String nextDigit = tail.charAt(0) + "";
     int first = convert.apply(head, map);
     int second = convert.apply(nextDigit, map);
 
@@ -63,19 +53,19 @@ public class ConvertToArabic {
     }
     int offset = calcOffset.apply(tail);
     return sum(
-        tail.charAt(offset),
+        tail.charAt(offset) + "",
         tail.substring(offset + 1),
         acum + (second - first),
         isLast.apply(offset),
         map);
   }
 
-  private static Boolean validateSintax(String number, Map<Character, Integer> map) {
+  private static Boolean validateSintax(String number, Map<String, Integer> map) {
     if (StringUtils.isBlank(number)) return true;
     if (number.length() < 2) return true;
 
-    int first = convert.apply(number.charAt(0), map);
-    int second = convert.apply(number.charAt(1), map);
+    int first = convert.apply(number.charAt(0) + "", map);
+    int second = convert.apply(number.charAt(1) + "", map);
 
     if (first < second && (map.containsValue(second - first))) return false;
 
@@ -95,30 +85,29 @@ public class ConvertToArabic {
     return !hasConcecutives(input.charAt(0), input.substring(1), 1);
   }
 
-  private static boolean hasTwoMinorSymbols(char head, String input, Map<Character, Integer> map) {
+  private static boolean hasTwoMinorSymbols(String head, String input, Map<String, Integer> map) {
     if (StringUtils.isBlank(input)) return false;
     if (input.length() < 2) return false;
 
     int first = convert.apply(head, map);
-    int second = convert.apply(input.charAt(0), map);
-    int third = convert.apply(input.charAt(1), map);
+    int second = convert.apply(input.charAt(0) + "", map);
+    int third = convert.apply(input.charAt(1) + "", map);
 
     if (first < third && second < third) return true;
 
-    return hasTwoMinorSymbols(input.charAt(0), input.substring(1), map);
+    return hasTwoMinorSymbols(input.charAt(0) + "", input.substring(1), map);
   }
 
-  private static boolean validateSustractViolation(String input, Map<Character, Integer> map) {
-    return !hasTwoMinorSymbols(input.charAt(0), input.substring(1), map);
+  private static boolean validateSustractViolation(String input, Map<String, Integer> map) {
+    return !hasTwoMinorSymbols(input.charAt(0) + "", input.substring(1), map);
   }
 
-  private static boolean validateAlphabet(String number, Map<Character, Integer> map) {
-    long count =
-        number.chars().mapToObj(c -> (char) c).filter(digit -> map.containsKey(digit)).count();
+  private static boolean validateAlphabet(String number, Map<String, Integer> map) {
+    long count = Stream.of(number.split("")).filter(digit -> map.containsKey(digit)).count();
     return count == number.length();
   }
 
-  private static boolean validate(String number, Map<Character, Integer> map)
+  private static boolean validate(String number, Map<String, Integer> map)
       throws ConversionException {
     // Validate if number is valid at alphabet
     boolean validAtAlphabet = validateAlphabet(number, map);
