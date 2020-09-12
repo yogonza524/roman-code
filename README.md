@@ -26,6 +26,11 @@ assertTrue(
 assertEquals(1914, ConvertToArabic.fromRoman("MCMXIV"));
 ```
 
+- Convert from **arabic** to **roman**
+```java
+assertEquals("MCMXIV", ConvertToRoman.fromArabic(1914));
+```
+
 - Create your own alphabet and convert to arabic
 ```java
 Alphabet alphabet =
