@@ -35,13 +35,13 @@ assertEquals("MCMXIV", ConvertToRoman.fromArabic(1914));
 ```java
 Alphabet alphabet =
     Alphabet.builder()
-        .One('F')
-        .Five('A')
-        .Ten('C')
-        .Fifty('U')
-        .OneHundred('N')
-        .FiveHundred('D')
-        .Thousand('O')
+        .One("F")
+        .Five("A")
+        .Ten("C")
+        .Fifty("U")
+        .OneHundred("N")
+        .FiveHundred("D")
+        .Thousand("O")
         .build();
 
 assertEquals(1914, ConvertToArabic.fromAlphabet("ONOCFA", alphabet));
@@ -50,7 +50,7 @@ assertEquals(1914, ConvertToArabic.fromAlphabet("ONOCFA", alphabet));
 - If your alphabet is incomplete then you will receive an IncompleteAlphabetException
 ```java
 Alphabet.Builder alphabet =
-    Alphabet.builder().One('G').Five('O').Ten('N').Fifty('Z').OneHundred('A');
+    Alphabet.builder().One("G").Five("O").Ten("N").Fifty("Z").OneHundred("A");
 
 assertTrue(
     assertThrows(
@@ -64,7 +64,7 @@ assertTrue(
 ```java
 assertNotNull(
     assertThrows(
-        UnsupportedOperationException.class, () -> alphabet.getAlphabet().put('G', 19), ""));
+        UnsupportedOperationException.class, () -> alphabet.getAlphabet().put("G", 19), ""));
 ```
 
 ## Test all
