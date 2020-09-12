@@ -8,6 +8,8 @@ import com.roman.code.domain.Alphabet;
 import javax.naming.OperationNotSupportedException;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
+
 public class ConvertToAlphabetTest {
   private Alphabet roman = Alphabet.roman();
   private Alphabet facundo =
@@ -66,6 +68,15 @@ public class ConvertToAlphabetTest {
     assertEquals("MMM", ConvertToAlphabet.fromArabic(3000, roman));
     assertEquals("MMMCMXCIX", ConvertToAlphabet.fromArabic(3999, roman));
   }
+
+    @Test
+    public void shouldPassWhenAllNumbersAreCorrect() throws OperationNotSupportedException {
+        for(int i=1; i < 4000; i++) {
+            String rNumber = ConvertToAlphabet.fromArabic(i, roman);
+            Integer aNumber = ConvertToArabic.fromRoman(rNumber);
+            assertEquals(i, aNumber);
+        }
+    }
 
     @Test
     public void shouldPassWhenFacundoConversionIsOK() throws OperationNotSupportedException {

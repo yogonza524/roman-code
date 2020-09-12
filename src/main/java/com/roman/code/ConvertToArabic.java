@@ -48,7 +48,7 @@ public class ConvertToArabic {
     int second = convert.apply(nextDigit, map);
 
     if (first >= second) {
-      LastNumber flag = first == second ? LastNumber.YES : LastNumber.NO;
+      LastNumber flag = first == second || tail.length() == 1 ? LastNumber.YES : LastNumber.NO;
       return sum(nextDigit, tail.substring(1), acum + first, flag, map);
     }
     int offset = calcOffset.apply(tail);
