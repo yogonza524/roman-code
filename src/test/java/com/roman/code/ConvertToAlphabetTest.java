@@ -6,12 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.roman.code.domain.Alphabet;
-import javax.naming.OperationNotSupportedException;
-import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import javax.naming.OperationNotSupportedException;
+import org.junit.jupiter.api.Test;
 
 public class ConvertToAlphabetTest {
   private Alphabet roman = Alphabet.roman();
@@ -102,7 +101,9 @@ public class ConvertToAlphabetTest {
   }
 
   @Test
-  public void shouldPassWhenConstructorIsPrivate() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, InvocationTargetException {
+  public void shouldPassWhenConstructorIsPrivate()
+      throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
+          InstantiationException, InvocationTargetException {
     Constructor<ConvertToArabic> constructor = ConvertToArabic.class.getDeclaredConstructor();
     assertTrue(Modifier.isPrivate(constructor.getModifiers()));
     constructor.setAccessible(true);

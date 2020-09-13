@@ -2,12 +2,11 @@ package com.roman.code;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import javax.naming.OperationNotSupportedException;
-import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import javax.naming.OperationNotSupportedException;
+import org.junit.jupiter.api.Test;
 
 class ConvertToRomanTest {
   @Test
@@ -16,7 +15,9 @@ class ConvertToRomanTest {
   }
 
   @Test
-  public void shouldPassWhenConstructorIsPrivate() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, InvocationTargetException {
+  public void shouldPassWhenConstructorIsPrivate()
+      throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
+          InstantiationException, InvocationTargetException {
     Constructor<ConvertToRoman> constructor = ConvertToRoman.class.getDeclaredConstructor();
     assertTrue(Modifier.isPrivate(constructor.getModifiers()));
     constructor.setAccessible(true);

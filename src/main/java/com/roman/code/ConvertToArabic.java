@@ -10,7 +10,8 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 
 public class ConvertToArabic {
-  private ConvertToArabic(){}
+  private ConvertToArabic() {}
+
   private static Map<String, Integer> numbers = Alphabet.roman().getAlphabet();
 
   public static Integer fromRoman(String romanNumber) throws ConversionException {
@@ -141,6 +142,6 @@ public class ConvertToArabic {
               + number
               + ". Cause: For sustraction operation only can exist one digit left to greater one");
     return true;
-    //return validAtAlphabet && hasValidSintax && notConcecutives && hasValidSustraction;
+    // return validAtAlphabet && hasValidSintax && notConcecutives && hasValidSustraction;
   }
 }
