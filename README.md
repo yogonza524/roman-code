@@ -12,8 +12,8 @@ To add a dependency using Maven, you should have at pom.xml:
 </dependency>
 ```
 
-To add a dependency using Gradle, you should have at build.gradle:
-```
+To add a dependency using Gradle, you should have at ```build.gradle```:
+```groovy
 repositories {
     mavenCentral()
 }
