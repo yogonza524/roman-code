@@ -5,7 +5,7 @@
 Translate any roman number to arabic or create your own alphabet to translate that symbols to arabic 
 
 ## Add to your project
-To add a dependency using Maven, you should have at ```pom.xml```:
+To add as dependency using Maven, you should have at ```pom.xml```:
 ```xml
 <dependency>
   <groupId>io.github.yogonza524</groupId>
@@ -14,7 +14,7 @@ To add a dependency using Maven, you should have at ```pom.xml```:
 </dependency>
 ```
 
-To add a dependency using Gradle, you should have at ```build.gradle```:
+To add as dependency using Gradle, you should have at ```build.gradle```:
 ```groovy
 repositories {
     mavenCentral()
