@@ -4,3 +4,8 @@
 # Ignore Gradle build output directory
 build
 .idea
+
+# Deployment
+gradle.properties
+public-key.asc
+secret-keys.gpg

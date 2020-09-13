@@ -84,7 +84,7 @@ public class ConvertToAlphabetTest {
   @Test
   public void shouldPassWhenAllNumbersAreCorrect() throws OperationNotSupportedException {
     for (int i = 1; i < 4000; i++) {
-        // Check all roman numbers
+      // Check all roman numbers
       String rNumber = ConvertToAlphabet.fromArabic(i, roman);
       Integer aNumber = ConvertToArabic.fromRoman(rNumber);
       assertEquals(i, aNumber);
