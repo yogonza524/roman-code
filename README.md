@@ -5,23 +5,14 @@ Translate any roman number to arabic or create your own alphabet to translate th
 ## Add to your project
 To add a dependency using Maven, you should have at pom.xml:
 ```xml
-<properties>
-    <java.version>11</java.version>
-    <maven.compiler.version>3.8.1</maven.compiler.version>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-</properties>
-
-<dependencies>
-    <dependency>
-      <groupId>io.github.yogonza524</groupId>
-      <artifactId>roman-code</artifactId>
-      <version>0.0.1</version>
-    </dependency>
-</dependencies>
+<dependency>
+  <groupId>io.github.yogonza524</groupId>
+  <artifactId>roman-code</artifactId>
+  <version>0.0.1</version>
+</dependency>
 ```
 
-To add a dependency using Gradle:
+To add a dependency using Gradle, you should have at build.gradle:
 ```
 repositories {
     mavenCentral()
