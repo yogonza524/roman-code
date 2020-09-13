@@ -31,7 +31,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: codecov/codecov-action@v1
       with:
-        directory: ./build/reports/jacoco/test/html
+        directory: ./build/reports/jacoco
         path_to_write_report: ./build/reports/jacoco/jacococodecov_report.gz
     - name: Set up JDK 11
       uses: actions/setup-java@v1
