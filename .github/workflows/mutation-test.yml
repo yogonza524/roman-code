@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  mutation:
 
     runs-on: ubuntu-latest
 
