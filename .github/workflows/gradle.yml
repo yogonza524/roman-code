@@ -40,6 +40,6 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Generate coverage
-      run: ./gradlew check jacocoTestCoverageVerification jacocoTestReport
+      run: ./gradlew check jacocoTestReport
     - name: Send to Coverage web
       run: bash <(curl -s https://codecov.io/bash)
