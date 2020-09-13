@@ -19,6 +19,7 @@ plugins {
 
 apply plugin: 'com.bmuschko.nexus'
 apply plugin: 'info.solidsoft.pitest'
+apply plugin: 'jacoco'
 
 archivesBaseName = 'roman-code'
 group = "io.github.yogonza524"
@@ -46,6 +47,8 @@ tasks.withType(Test) {
         exceptionFormat "full"
         events "passed", "failed", "skipped"
     }
+    useJUnitPlatform()
+    jvmArgs '--enable-preview'
 }
 
 modifyPom {
@@ -125,4 +128,31 @@ pitest {
                 'TRUE_RETURNS',
                 'NULL_RETURNS',
                 'PRIMITIVE_RETURNS']
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.7
+            }
+        }
+    }
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+        csv.enabled false
+    }
 }
