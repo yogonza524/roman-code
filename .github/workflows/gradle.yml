@@ -31,8 +31,8 @@ jobs:
     - uses: actions/checkout@v2
     - uses: codecov/codecov-action@v1
       with:
-        directory: ./build/reports/jacoco
-        path_to_write_report: ./build/reports/jacococodecov_report.gz
+        directory: ./build/reports/jacoco/test/html
+        path_to_write_report: ./build/reports/jacoco/jacococodecov_report.gz
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
@@ -40,6 +40,6 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Generate coverage
-      run: ./gradlew check codeCoverageReport
+      run: ./gradlew check jacocoTestCoverageVerification jacocoTestReport
     - name: Send to Coverage web
       run: bash <(curl -s https://codecov.io/bash)
