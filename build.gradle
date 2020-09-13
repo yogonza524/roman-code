@@ -1,9 +1,13 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.5.1'
     }
 }
 
@@ -14,6 +18,7 @@ plugins {
 }
 
 apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'info.solidsoft.pitest'
 
 archivesBaseName = 'roman-code'
 group = "io.github.yogonza524"
@@ -29,6 +34,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    compile 'org.pitest:pitest-junit5-plugin:0.12'
 }
 
 test {
@@ -87,6 +93,36 @@ nexus {
 }
 
 nexusStaging {
-    packageGroup = "io.github.yogonza524" //optional if packageGroup == project.getGroup()
-    //stagingProfileId = "yourStagingProfileId" //when not defined will be got from server using "packageGroup"
+    packageGroup = "io.github.yogonza524"
+}
+
+pitest {
+    testPlugin = "junit5"
+    targetClasses = ['com.roman.code.*']
+    mainSourceSets = [sourceSets.main]
+    testSourceSets = [sourceSets.test]
+    excludedClasses = [
+            'com.meetup.api.presentation.AppBootstrap'
+    ]
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
+    failWhenNoMutations = false
+    threads = 12
+    verbose = true
+    coverageThreshold = 90
+    mutationThreshold = 70
+    mutators = ['CONDITIONALS_BOUNDARY',
+                'INCREMENTS',
+                'INVERT_NEGS',
+                'MATH',
+                'NEGATE_CONDITIONALS',
+                'RETURN_VALS',
+                'VOID_METHOD_CALLS',
+                'INLINE_CONSTS',
+                'REMOVE_CONDITIONALS',
+                'EMPTY_RETURNS',
+                'FALSE_RETURNS',
+                'TRUE_RETURNS',
+                'NULL_RETURNS',
+                'PRIMITIVE_RETURNS']
 }
