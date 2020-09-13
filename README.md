@@ -2,6 +2,36 @@
 # Roman code
 Translate any roman number to arabic or create your own alphabet to translate that symbols to arabic 
 
+## Add to your project
+To add a dependency using Maven, you should have at pom.xml:
+```xml
+<properties>
+    <java.version>11</java.version>
+    <maven.compiler.version>3.8.1</maven.compiler.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+</properties>
+
+<dependencies>
+    <dependency>
+      <groupId>io.github.yogonza524</groupId>
+      <artifactId>roman-code</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+</dependencies>
+```
+
+To add a dependency using Gradle:
+```
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "io.github.yogonza524:roman-code:0.0.1"
+}
+```
+
 ## Features
 - Translator roman-2-arabic
 - Translator alphabet-2-arabic
@@ -73,7 +103,7 @@ assertNotNull(
 ```
 
 ## Try yourself
-Check [Test class for more examples](./src/test/java/com/roman/code/ConvertToArabicTest.java)
+Check [Test classes for more examples](./src/test/java/com/roman/code/)
  
 ## Issues
 Please contact to me to [my email](mailto:yogonza524@gmail.com)
